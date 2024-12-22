@@ -1,29 +1,39 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    background-color: #548687;
+    padding-top: 0.5rem;
+    background-color: #376b6e;
     text-align: center;
-    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #000;
+}
+
+p {
+    padding-top: 10px;
+    font-weight: 600;
 }
 
 .container {
-    height: 80vh;
+    max-height: 63vh;
+    min-height: 35vh;
+    margin: 0.5rem 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
 }
 
 .game {
     height: 60vmin;
     width: 60vmin;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 1.5vmin;
 }
@@ -32,136 +42,92 @@ body {
     height: 18vmin;
     width: 18vmin;
     border-radius: 1rem;
-    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
     border: none;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
     font-size: 8vmin;
-    color: #b0413e;
-    background-color: #ffffc7;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    color: rgb(88, 8, 8);
+    background-color: #ffff;
 }
 
-.box:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-}
-
-.box:hover:not(:disabled) {
-    transform: scale(1.1);
-}
-
-#reset, #new-game {
-    background-color: #000;
-    color: white;
-    border-radius: 1rem;
+.reset-btn {
     padding: 1rem;
+    width: 25vmin;
     font-size: 1.25rem;
+    border-radius: 1rem;
     border: none;
-    margin-top: 2rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 0 1.5rem rgb(0, 0, 0, 0.1);
+    background-color: #070707;
+    color: #ffff;
 }
 
-#reset:hover, #new-game:hover {
-    background-color: #333;
-    transform: scale(1.05);
+.msg-box {
+    height: 100vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
 }
 
-#msg {
-    color: #ffffc7;
+.msg {
+    color: #000;
     font-size: 5vmin;
-    margin-bottom: 2rem;
+}
+
+.new-btn {
+    padding: 1rem;
+    width: 25vmin;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 0 1.5rem rgb(0, 0, 0, 0.1);
+    background-color: #070707;
+    color: #ffff;
 }
 
 .hide {
     display: none;
 }
 
-/* Styles for Instruction and Mode Selector */
-main p, #game-mode {
+.mode-selection {
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     color: #ffffff;
-    font-size: 1.2rem;
-    margin: 1rem 0;
-    font-family: Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
-#game-mode {
+.mode-selection label {
+    font-size: 1.25rem;
+}
+
+.mode-selection select {
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    width: 20vmin;
+    font-size: 1.2rem;
+    border-radius: 1rem;
     border: none;
-    font-size: 1rem;
-    background-color: #ffffc7;
-    color: #b0413e;
+    background-color: #ffff;
+    color: #070707;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s ease;
 }
 
-#game-mode:hover {
-    background-color: #ffeaa7;
+.mode-selection select:hover {
+    background-color: #f2f2f2;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .game {
-        height: 80vmin;
-        width: 80vmin;
-        gap: 1vmin;
-    }
-
-    .box {
-        height: 22vmin;
-        width: 22vmin;
-        font-size: 6vmin;
-    }
-
-    #msg {
-        font-size: 4vmin;
-    }
-
-    #reset, #new-game {
-        font-size: 1rem;
-        padding: 0.75rem;
-    }
-
-    main p {
-        font-size: 1rem;
-    }
-
-    #game-mode {
-        font-size: 0.9rem;
-        padding: 0.4rem;
-    }
+.winning-box {
+    background-color: yellow;
+    transition: background-color 0.5s ease;
+    font-size: 4rem;
 }
 
-@media (max-width: 480px) {
-    .game {
-        height: 90vmin;
-        width: 90vmin;
-        gap: 0.5vmin;
-    }
-
-    .box {
-        height: 26vmin;
-        width: 26vmin;
-        font-size: 5vmin;
-    }
-
-    #msg {
-        font-size: 3.5vmin;
-    }
-
-    #reset, #new-game {
-        font-size: 0.9rem;
-        padding: 0.5rem;
-    }
-
-    main p {
-        font-size: 0.9rem;
-    }
-
-    #game-mode {
-        font-size: 0.8rem;
-        padding: 0.3rem;
-    }
+#turn-info {
+    font-family: 'Arial', sans-serif;  
 }
