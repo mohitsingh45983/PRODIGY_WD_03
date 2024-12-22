@@ -1,112 +1,101 @@
 let boxes = document.querySelectorAll(".box");
 let reset = document.querySelector("#reset");
 let newGameBtn = document.querySelector("#new-game");
-let  msgContainer = document.querySelector(".msg-container");
+let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
+let gameMode = document.querySelector("#game-mode");
 
 let turnO = true;
 let count = 0;
 
-
 const winPatterns = [
-    [0,1,2],
-    [0,3,6],
-    [0,4,8],
-    [1,4,6],
-    [2,5,8],
-    [2,4,6],
-    [3,4,5],
-    [6,7,8]
+    [0, 1, 2],
+    [0, 3, 6],
+    [0, 4, 8],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [3, 4, 5],
+    [6, 7, 8]
 ];
 
-const resetGame = () =>{
+const resetGame = () => {
     turnO = true;
     enableBoxes();
     msgContainer.classList.add("hide");
     count = 0;
 };
 
-boxes.forEach((box)=>{
-    box.addEventListener("click",()=>{
-        console.log("Button was clicked");
-        count++;
-        console.log("count=",count);
-        if(count === 9)
-        {
-            Draw();
-        }
-        if(turnO)
-        {
-            console.log("O");
-            box.innerText = "O";
-            turnO = false;        
-        }
-        else
-        {
-            console.log("X");
-            box.innerText = "X";
-            turnO = true;
-        }
+const playTurn = (box) => {
+    count++;
+    box.innerText = turnO ? "O" : "X";
+    box.disabled = true;
+    if (checkWinner()) return;
+    if (count === 9) {
+        Draw();
+        return;
+    }
+    turnO = !turnO;
 
-        box.disabled = "true";
+    if (gameMode.value === "ai" && !turnO) {
+        setTimeout(aiMove, 500); // AI plays after a short delay
+    }
+};
 
-        checkWinner();    
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        if (turnO || gameMode.value === "friend") {
+            playTurn(box);
+        }
     });
 });
 
+const aiMove = () => {
+    let availableBoxes = Array.from(boxes).filter((box) => box.innerText === "");
+    if (availableBoxes.length === 0) return;
+
+    let aiBox = availableBoxes[Math.floor(Math.random() * availableBoxes.length)];
+    playTurn(aiBox);
+};
+
 const disableBoxes = () => {
-    for(let box of boxes)
-    {
+    for (let box of boxes) {
         box.disabled = true;
     }
 };
 
 const enableBoxes = () => {
-    for(let box of boxes)
-    {
+    for (let box of boxes) {
         box.disabled = false;
         box.innerText = "";
-  
     }
 };
 
 const showWinner = (winner) => {
-    msg.innerText = `Congratulations,Winner is ${winner}`;
+    msg.innerText = `Congratulations, Winner is ${winner}`;
     msgContainer.classList.remove("hide");
     disableBoxes();
 };
 
-const checkWinner = () =>{
+const checkWinner = () => {
+    for (let pattern of winPatterns) {
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
 
-    for(let patterns of winPatterns)
-    {
-        pos1Val = boxes[patterns[0]].innerText;
-        pos2Val = boxes[patterns[1]].innerText;
-        pos3Val = boxes[patterns[2]].innerText;
-
-        if(pos1Val != "" && pos2Val != ""  && pos3Val != "")
-        {
-            if(pos1Val === pos2Val  && pos2Val === pos3Val)
-            {
-                showWinner(pos1Val);
-
-            }
-
+        if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
+            showWinner(pos1Val);
+            return true;
         }
     }
+    return false;
 };
 
-const Draw = () =>{
+const Draw = () => {
     msg.innerText = `It's a Draw`;
     msgContainer.classList.remove("hide");
     disableBoxes();
-
 };
 
-newGameBtn.addEventListener("click",resetGame);
-reset.addEventListener("click",resetGame);
-
-
-
-
-
+newGameBtn.addEventListener("click", resetGame);
+reset.addEventListener("click", resetGame);
