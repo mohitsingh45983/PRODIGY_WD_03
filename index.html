@@ -4,35 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe Game</title>
+    <link rel="shortcut icon" href="icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="msg-container hide">
-        <p id="msg">Winner</p>
-        <button id="new-game">New Game</button>
+<body>    
+    <div class="msg-box hide">
+        <p class="msg">Winner</p>
+        <button class="new-btn">New Game</button> 
     </div>
-    <main>
-        <h1>Tic-Tac-Toe</h1>
-        <p>Choose a mode:</p>
-        <select id="game-mode">
-            <option value="ai">Play against AI</option>
-            <option value="friend">Play against a Friend</option>
+    <h1>Tic Tac Toe Game</h1>
+
+    <div class="mode-selection">
+        <label for="mode">Choose Opponent:</label>
+        <select id="mode">
+            <option value="friend">Friend</option>
+            <option value="ai">AI</option>
         </select>
-        <div class="container">
-            <div class="game">
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>      
-            </div>
-        </div>
-        <button id="reset">Reset</button>
+    </div>
+
+    <p id="turn-info">Game Start</p>
+    <main class="container">
+        <section class="game">
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+        </section>
     </main>
-    <script src="script.js"></script>   
+    
+    <button class="reset-btn">Reset Game</button>
+
+    <script src="main.js"></script>
 </body>
 </html>
