@@ -1,107 +1,167 @@
 * {
     margin: 0;
-    padding: 0; 
- }
- 
- body {
-     background-color: #548687;
-     text-align: center;
- }
- 
- .container {
-     height: 80vh;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     padding: 1rem;
-     box-sizing: border-box;
- }
- 
- .game {
-     height: 60vmin;
-     width: 60vmin;
-     display: flex;
-     justify-content: center;
-     flex-wrap: wrap;
-     align-items: center;
-     gap: 1.5vmin;
- }
- 
- .box {
-     height: 18vmin;
-     width: 18vmin;
-     border-radius: 1rem;
-     box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
-     border: none;
-     font-size: 8vmin;
-     color: #b0413e;   
-     background-color: #ffffc7;
- }
- 
- #reset, #new-game {
-     background-color: #000;
-     color: white;
-     border-radius: 1rem;
-     padding: 1rem;
-     font-size: 1.25rem;
-     border: none;
-     margin-top: 2rem;
- }
- 
- #msg {
-     color: #ffffc7;
-     font-size: 5vmin;
-     margin-bottom: 2rem;
- }
- 
- .hide {
-     display: none;
- }
- 
- /* Responsive Design */
- @media (max-width: 768px) {
-     .game {
-         height: 80vmin;
-         width: 80vmin;
-         gap: 1vmin;
-     }
- 
-     .box {
-         height: 22vmin;
-         width: 22vmin;
-         font-size: 6vmin;
-     }
- 
-     #msg {
-         font-size: 4vmin;
-     }
- 
-     #reset, #new-game {
-         font-size: 1rem;
-         padding: 0.75rem;
-     }
- }
- 
- @media (max-width: 480px) {
-     .game {
-         height: 90vmin;
-         width: 90vmin;
-         gap: 0.5vmin;
-     }
- 
-     .box {
-         height: 26vmin;
-         width: 26vmin;
-         font-size: 5vmin;
-     }
- 
-     #msg {
-         font-size: 3.5vmin;
-     }
- 
-     #reset, #new-game {
-         font-size: 0.9rem;
-         padding: 0.5rem;
-     }
- }
- 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #548687;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.game {
+    height: 60vmin;
+    width: 60vmin;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+.box {
+    height: 18vmin;
+    width: 18vmin;
+    border-radius: 1rem;
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
+    border: none;
+    font-size: 8vmin;
+    color: #b0413e;
+    background-color: #ffffc7;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.box:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.box:hover:not(:disabled) {
+    transform: scale(1.1);
+}
+
+#reset, #new-game {
+    background-color: #000;
+    color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.25rem;
+    border: none;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#reset:hover, #new-game:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+#msg {
+    color: #ffffc7;
+    font-size: 5vmin;
+    margin-bottom: 2rem;
+}
+
+.hide {
+    display: none;
+}
+
+/* Styles for Instruction and Mode Selector */
+main p, #game-mode {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    font-family: Arial, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#game-mode {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    background-color: #ffffc7;
+    color: #b0413e;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#game-mode:hover {
+    background-color: #ffeaa7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game {
+        height: 80vmin;
+        width: 80vmin;
+        gap: 1vmin;
+    }
+
+    .box {
+        height: 22vmin;
+        width: 22vmin;
+        font-size: 6vmin;
+    }
+
+    #msg {
+        font-size: 4vmin;
+    }
+
+    #reset, #new-game {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    main p {
+        font-size: 1rem;
+    }
+
+    #game-mode {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game {
+        height: 90vmin;
+        width: 90vmin;
+        gap: 0.5vmin;
+    }
+
+    .box {
+        height: 26vmin;
+        width: 26vmin;
+        font-size: 5vmin;
+    }
+
+    #msg {
+        font-size: 3.5vmin;
+    }
+
+    #reset, #new-game {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    main p {
+        font-size: 0.9rem;
+    }
+
+    #game-mode {
+        font-size: 0.8rem;
+        padding: 0.3rem;
+    }
+}
