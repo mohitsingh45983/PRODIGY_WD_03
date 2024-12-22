@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0; 
+ }
+ 
+ body {
+     background-color: #548687;
+     text-align: center;
+ }
+ 
+ .container {
+     height: 80vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 1rem;
+     box-sizing: border-box;
+ }
+ 
+ .game {
+     height: 60vmin;
+     width: 60vmin;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     align-items: center;
+     gap: 1.5vmin;
+ }
+ 
+ .box {
+     height: 18vmin;
+     width: 18vmin;
+     border-radius: 1rem;
+     box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
+     border: none;
+     font-size: 8vmin;
+     color: #b0413e;   
+     background-color: #ffffc7;
+ }
+ 
+ #reset, #new-game {
+     background-color: #000;
+     color: white;
+     border-radius: 1rem;
+     padding: 1rem;
+     font-size: 1.25rem;
+     border: none;
+     margin-top: 2rem;
+ }
+ 
+ #msg {
+     color: #ffffc7;
+     font-size: 5vmin;
+     margin-bottom: 2rem;
+ }
+ 
+ .hide {
+     display: none;
+ }
+ 
+ /* Responsive Design */
+ @media (max-width: 768px) {
+     .game {
+         height: 80vmin;
+         width: 80vmin;
+         gap: 1vmin;
+     }
+ 
+     .box {
+         height: 22vmin;
+         width: 22vmin;
+         font-size: 6vmin;
+     }
+ 
+     #msg {
+         font-size: 4vmin;
+     }
+ 
+     #reset, #new-game {
+         font-size: 1rem;
+         padding: 0.75rem;
+     }
+ }
+ 
+ @media (max-width: 480px) {
+     .game {
+         height: 90vmin;
+         width: 90vmin;
+         gap: 0.5vmin;
+     }
+ 
+     .box {
+         height: 26vmin;
+         width: 26vmin;
+         font-size: 5vmin;
+     }
+ 
+     #msg {
+         font-size: 3.5vmin;
+     }
+ 
+     #reset, #new-game {
+         font-size: 0.9rem;
+         padding: 0.5rem;
+     }
+ }
+ 
